@@ -1,0 +1,57 @@
+replicaCount: 1
+
+image:
+  repository: "securityrat/securityrat"
+  tag: v1.8.7
+  pullPolicy: Always
+
+nameOverride: ""
+fullnameOverride: ""
+
+ingress:
+  enabled: false
+
+service:
+  type: ClusterIP
+  port: 9002
+  targetPort: 9000
+
+autoscaling:
+  enabled: false
+
+serviceAccount:
+  create: false
+
+containers:
+  - env:
+    - name: JHIPSTER_SLEEP
+      value: "30"
+    - name: SPRING_DATASOURCE_USERNAME
+      value: securityrat
+    - name: SPRING_DATASOURCE_PASSWORD
+      value: password
+    - name: SPRING_DATASOURCE_URL
+      value: "jdbc:mysql://securityrat-chart-mysql-headless:3306/securityrat?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true"
+
+mysql:
+  enabled: true
+  service:
+    type: ClusterIP
+    ports:
+      mysql: 3306
+  auth:
+    rootPassword: "changeit"
+    createDatabase: true
+    database: "securityrat"
+    username: "securityrat"
+    password: "password"
+
+podAnnotations: {}
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
