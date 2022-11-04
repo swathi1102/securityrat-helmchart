@@ -22,16 +22,11 @@ autoscaling:
 serviceAccount:
   create: false
 
-containers:
-  - env:
-    - name: JHIPSTER_SLEEP
-      value: "30"
-    - name: SPRING_DATASOURCE_USERNAME
-      value: securityrat
-    - name: SPRING_DATASOURCE_PASSWORD
-      value: password
-    - name: SPRING_DATASOURCE_URL
-      value: "jdbc:mysql://securityrat-chart-mysql-headless:3306/securityrat?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true"
+env:
+  JHIPSTER_SLEEP: "30"
+  SPRING_DATASOURCE_USERNAME: "securityrat"
+  SPRING_DATASOURCE_PASSWORD: "password"
+  SPRING_DATASOURCE_URL: "jdbc:mysql://securityrat-chart-mysql-headless:3306/securityrat?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true"
 
 mysql:
   enabled: true
